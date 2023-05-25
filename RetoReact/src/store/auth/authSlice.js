@@ -16,11 +16,11 @@ export const authSlice  = createSlice({
         login: (state, {payload}) => {
 
         state.status = 'authenticated';// 'not authenticated 'authenticated'
-        state.uid = null; 
-        state.email= null;
-        state.displayName = null;
-        state.token =null;
-        state.errorMessage =  null;
+        state.uid = payload.uid; 
+        state.email= payload.email;
+        state.displayName = payload.displayName;
+        state.token =payload.token;
+        state.errorMessage =  payload?.errorMessage;
 
         },
         logout:(state, {payload})=>{
@@ -29,12 +29,11 @@ export const authSlice  = createSlice({
         state.email= null;
         state.displayName = null;
         state.token =null;
-        state.errorMessage =  null;
+        state.errorMessage = payload?.errorMessage;
 
         },
         checkingCredentiales : (state) => {
             state.status = 'checking'
-
         }
 
 

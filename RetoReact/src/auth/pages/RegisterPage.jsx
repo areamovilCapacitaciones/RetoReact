@@ -3,7 +3,50 @@ import { Button, Grid, TextField, Typography } from '@mui/material'
 import AuthLayout from '../layout/AuthLayout'
 
 
+const formData = {
+  nameUser: '',
+  lastNameUser: '',
+  email: '',
+  password: '',
+  displayName: ''
+
+}
+const formValidations = {
+  nameUser:[(value) => value.length >=3 , 'EL Nombre debe estar correctamente diligenciado '],
+  lastNameUser:[(value) => value.length >=3 , 'EL apellido debe estar correctamente diligenciado'],
+  email: [ (value) => value.includes('@'), 'El correo debe de tener una @'],
+  password: [ (value) => value.length >= 8, 'El password debe de tener más de 8 letras.'],
+  password: [(value) =>{
+    if(value.toUpperCase){
+      return ''
+    }
+    return 'la contraseña debe tener por lo menos una mayúscula'
+  }],
+  displayName: [ (value) => value.length >= 1, 'El nombre es obligatorio.'],
+}
+
 export const RegisterPage = () => {
+
+  const dispatch = useDispatch();
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const { status, errorMessage } = useSelector( state => state.auth );
+  const isCheckingAuthentication = useMemo( () => status === 'checking', [status]);
+
+  const { 
+    formState, displayName, email, password, onInputChange,
+    isFormValid, displayNameValid, nameUser, emailValid, passwordValid, 
+  } = useForm( formData, formValidations );
+
+  const onSubmit = ( event ) => {
+    event.preventDefault();
+    setFormSubmitted(true);
+
+    if ( !isFormValid ) return;
+
+    dispatch( startCreatingUserWithEmailPassword(formState) );
+  }
+
   return (
     <>
       <AuthLayout title="Register">
@@ -15,6 +58,11 @@ export const RegisterPage = () => {
                 type='text'
                 placeholder='Jhon'
                 fullWidth
+                name='nameUser'
+                value={nameUser}
+                error={ !!emailValid && formSubmitted }
+                helperText={ errorMessage }
+
               />
             </Grid>
             <Grid item xs={12} sx={{ mt: 2 }} >

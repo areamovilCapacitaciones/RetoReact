@@ -4,25 +4,25 @@ import { Link as RoterLink } from "react-router-dom";
 import { Button, Grid, TextField, Link, Typography } from '@mui/material'
 import React from 'react'
 import AuthLayout from "../layout/AuthLayout";
-import { useForm } from "../../hooks";
+import { useForm, usefetch } from "../../hooks";
 import { checkingAuthtentication } from "../../store/auth/thunks";
 
 
 export const LoginPage = () => {
 
+  
+
   const dispatch  = useDispatch();
   const{email, password, onInputChange} = useForm({
-    email :'info@areamovil.com.co',
-    password: '123456ab',
-
-  })
+    email :'',
+    password: '',
+  }
+ 
+  )
   const onSubmit = ( event ) =>{
   
     event.preventDefault();
     dispatch(checkingAuthtentication());
-
-    console.log({email, password})
-
 
   }
 

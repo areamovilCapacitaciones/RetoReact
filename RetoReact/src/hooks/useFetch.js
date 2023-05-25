@@ -1,22 +1,29 @@
 import { useEffect, useState } from "react"
 
-export const usefetch =  (url) =>{
-
-    
-    const [data, setData] = useState(null);
-
-    const getFetch = async () =>{
+export const usefetch = async(userName , password) => {
+   
+        const url = 'https://areamovilmocks.azurewebsites.net/api/Login/ValidateUser';
         
-        const respuesta = await fetch(url);
-        const data = await respuesta.json();
-        
-        console.log(data)
-    }
+        try { 
+          const response = await fetch(`${url}?userName=${userName}&password=${password}`);
+          if (response.ok) {
+            const responseData = await response.json();
 
-    useEffect(() => {
-        getFetch();
+            console.log(responseData, 'respuesta desde el fech');
+            return (responseData)
+
+          } else {
+            console.error('Error en la solicitud:', response.status);
+            return (response.status)
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      
     
-    }, [url])
-    
-    return {}
-}
+      
+      
+      
+      
+      
