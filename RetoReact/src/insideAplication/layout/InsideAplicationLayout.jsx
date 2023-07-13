@@ -3,7 +3,7 @@ import { Box } from '@mui/system'
 import { NavBar } from '../components/NavBar'
 import { SideBar } from '../components/SideBar'
 
-const drawerwidth = 240;
+const drawerwidth = 50;
 
 export const InsideAplicationLayout = (  ) => {
 

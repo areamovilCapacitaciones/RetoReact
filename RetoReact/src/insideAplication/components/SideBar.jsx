@@ -1,16 +1,16 @@
 
 // import { Box, Divider, Drawer, Toolbar, Typography } from '@mui/material';
 
-import { Box, Divider, Drawer, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography } from '@mui/material'
-import { TurnedInNot } from '@mui/icons-material'
+import { Box, Divider, Drawer, List, Toolbar, Typography } from '@mui/material'
+import { MaoItem } from './MaoItem'
 
 
-export const SideBar = ({ drawerwidth }) => {
+export const SideBar = ( numerito ) => {
 
     return (
         <Box
             component='nav'
-            sx={{ width: drawerwidth, flexShrink: { sm: 0 } }}
+            sx={{ width: numerito, flexShrink: { sm: 0 } }}
         >
 
             <Drawer
@@ -18,7 +18,7 @@ export const SideBar = ({ drawerwidth }) => {
                 open
                 sx={{
                     display: { xs: 'block' },
-                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerwidth }
+                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: numerito }
                 }}
             >
                 <Toolbar>
@@ -28,26 +28,7 @@ export const SideBar = ({ drawerwidth }) => {
                 </Toolbar>
                 <Divider />
                 <List>
-
-                    {
-                        ['hola', 'buenaas'].map = (text => (
-                            <ListItem key={text} disablePadding>
-                                <ListItemButton>
-                                    <ListItemIcon>
-                                        <TurnedInNot />
-                                    </ListItemIcon>
-                                    <Grid container>
-                                        <ListItemText primary={{ text }} />
-                                        <ListItemText secondary={'lorem' } />
-                                    </Grid>
-
-                                </ListItemButton>
-
-
-                            </ListItem>
-
-                        ))
-                    }
+                    <MaoItem />
                 </List>
 
             </Drawer>
