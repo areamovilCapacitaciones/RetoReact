@@ -16,7 +16,7 @@ const formValidations = {
   lastNameUser:[(value) => value.length >=3 , 'EL apellido debe estar correctamente diligenciado'],
   email: [ (value) => value.includes('@'), 'El correo debe de tener una @'],
   password: [ (value) => value.length >= 8, 'El password debe de tener más de 8 letras.'],
-  password: [(value) =>{
+  passwordValid: [(value) =>{
     if(value.toUpperCase){
       return ''
     }
